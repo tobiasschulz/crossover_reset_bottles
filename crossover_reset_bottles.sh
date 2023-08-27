@@ -15,10 +15,10 @@ pids=`echo $pids|tr ',' ' '`
 
 sleep 3
 
-TIME=`date -v -1H '+%b %d, %Y, %H:%M:%S %p'`
+TIME=`date -u +"%Y-%m-%dT%H:%M:%SZ"`
 
 # modify time in order to reset trial
-plutil -replace FirstRunDate -string "$TIME" ~/Library/Preferences/com.codeweavers.CrossOver.plist
+plutil -replace FirstRunDate -date "$TIME" ~/Library/Preferences/com.codeweavers.CrossOver.plist
 
 # reset all bottles
 for file in ~/Library/Application\ Support/CrossOver/Bottles/*/.{eval,update-timestamp}; do rm -rf "$file";done
